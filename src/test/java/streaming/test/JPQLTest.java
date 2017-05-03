@@ -13,12 +13,40 @@ import javax.persistence.Query;
 import junit.framework.Assert;
 import org.junit.Test;
 import streaming.entity.Film;
+import streaming.entity.Personne;
+import streaming.entity.Serie;
 
 /**
  *
  * @author formation
  */
 public class JPQLTest {
+
+    @Test
+    public void fonctionsAccesJPA() {
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
+        EntityManager em = factory.createEntityManager();
+        
+        em.getTransaction().begin();// Démarre transaction: nécessaire si écritures
+        
+        em.createQuery("UPDATE FROM Personne p SET p.nom = 'coucou'").executeUpdate();
+        em.persist( new Personne() );// INSERT
+        
+        Serie s = em.find(Serie.class, 1L);// Récup 1 entité
+        em.remove(s);// Pas génial puisque nécessite un find auparavant!
+        
+        Serie dexter = new Serie();
+        dexter.setTitre("DEXTER NOUV VERSION");
+        dexter.setSynopsis("coucou");
+        dexter.setId(1L);
+        em.merge(dexter);
+        
+        em.createQuery("DELETE FROM Serie s WHERE s.id=1").executeUpdate();
+        
+        em.getTransaction().commit();// Valide en DB modifs
+        
+    }
 
     @Test
     public void req25() {
@@ -36,13 +64,13 @@ public class JPQLTest {
                 + "ORDER BY total";
 
         Query query = em.createQuery(sql);
-        List<Object[]> resultats =  query.getResultList();
+        List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
-            
-            System.out.println( String.format("%s %d", ligne[1], ligne[0]) );
+
+            System.out.println(String.format("%s %d", ligne[1], ligne[0]));
         }
     }
-    
+
     @Test
     public void req24() {
 
@@ -57,13 +85,13 @@ public class JPQLTest {
                 + "ORDER BY total, sr.titre ";
 
         Query query = em.createQuery(sql);
-        List<Object[]> resultats =  query.getResultList();
+        List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
-            
+
 //            System.out.println( String.format("%s %d", ligne[0], ligne[1]) );
         }
     }
-    
+
     @Test
     public void req23() {
 
@@ -79,13 +107,13 @@ public class JPQLTest {
                 + "ORDER BY nbFilms, r.nom DESC, r.prenom DESC";
 
         Query query = em.createQuery(sql);
-        List<Object[]> resultats =  query.getResultList();
+        List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
-            
+
 //            System.out.println( String.format("%s %s %d", ligne[1], ligne[2], ligne[0]) );
         }
     }
-    
+
     @Test
     public void req22() {
 
@@ -100,13 +128,13 @@ public class JPQLTest {
                 + "ORDER BY nbFilms, r.nom DESC, r.prenom DESC";
 
         Query query = em.createQuery(sql);
-        List<Object[]> resultats =  query.getResultList();
+        List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
-            
+
 //            System.out.println( String.format("%s %s %d", ligne[1], ligne[2], ligne[0]) );
         }
     }
-    
+
     @Test
     public void req21() {
 
@@ -120,9 +148,9 @@ public class JPQLTest {
                 + "GROUP BY g";
 
         Query query = em.createQuery(sql);
-        List<Object[]> resultats =  query.getResultList();
+        List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
-            
+
 //            System.out.println( ligne[1] + " " + ligne[0] );
         }
     }
