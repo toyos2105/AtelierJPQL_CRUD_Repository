@@ -24,9 +24,9 @@
 
 13. Le nombre de saisons de la série Dexter
 
-14. Le nombre d'épisodes de la saison 8 de la série Dexter
+14. Le nombre total d'épisodes de la série Dexter
 
-15. Le nombre total d'épisodes de la série Dexter
+15. Le nombre d'épisodes de la saison 8 de la série Dexter
 
 16. Le nombre total de liens pour nos films policiers américains
 
