@@ -1,10 +1,10 @@
-1. Vérifier le titre du film d'id 4
+1. Vérifier que le titre du film d'id 4 est "Fargo"
 
 2. Vérifier le nombre de films
 
 3. Année de prod mini de nos films
 
-4. Nombre de liens du film 'Big Lebowski'
+4. Nombre de liens du film 'Big Lebowski (The)'
 
 5. Nombre de films réalisés par Polanski
 
@@ -47,4 +47,3 @@
 24. Le nombre total de saisons pour chaque série, triés par ordre croissant de saisons, puis par ordre alphabétique.
 
 25. Le nombre total d'épisodes pour chaque série, pour peu qu'il y ait plus de 5 épisodes au total. Le tout trié par nbre d'épisodes.
-

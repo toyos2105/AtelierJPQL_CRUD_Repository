@@ -5,11 +5,15 @@
  */
 package streaming.test;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import streaming.config.SpringConfig;
+import streaming.dao.FilmDAO;
+import streaming.entity.Film;
 
 /**
  *
@@ -17,10 +21,25 @@ import streaming.config.SpringConfig;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes=SpringConfig.class)
-public class PersonneDAOTest {
+public class DAOTest {
+    
+    @Autowired
+    private FilmDAO filmDao;
+    
+    
     
     @Test
-    public void test(){
+    public void req7(){
         
+        long nbFilms = filmDao.countByRealisateursNomAndActeursNom("Polanski", "Polanski");
+        
+        Assert.assertEquals(1L, nbFilms);
+    }
+    
+    @Test
+    public void test1(){
+        
+        
+        Assert.assertEquals(1L, filmDao.compteFilmsParNomActeur("Polanski") );
     }
 }
