@@ -18,7 +18,7 @@
 
 10. Le nombre de films réalisés à la fois par les 2 frères coen
 
-11. Le nombre de films des frères coen interprétés par Steve Buscemi
+11. Le nombre de films réalisés à la fois par les 2 frères Coen, et interprétés par Steve Buscemi
 
 12. Le nombre de films policiers réalisés à la fois par les 2 frères Coen, et interprétés par Steve Buscemi
 

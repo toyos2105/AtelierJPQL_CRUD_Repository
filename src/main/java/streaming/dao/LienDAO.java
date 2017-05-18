@@ -14,5 +14,9 @@ import streaming.entity.Lien;
  */
 public interface LienDAO extends CrudRepository<Lien, Long>{
     
+    public long countByFilmGenreNomAndFilmActeursNom(String nomgGenre, String acteurNom);
+    
+    public long countByFilmGenreNomAndFilmPaysNom(String nomGenre, String nomPays);
+    
     long countByFilmTitre(String t);
 }

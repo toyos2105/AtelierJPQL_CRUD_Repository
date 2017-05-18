@@ -26,7 +26,22 @@ public class DAOTest {
     @Autowired
     private FilmDAO filmDao;
     
-    
+    @Test
+    public void req21(){
+        
+       Object[][] tabRes = filmDao.req21();
+       
+       // Méthode 1
+//       for(int i=0;i<tabRes.length;i++){
+//           
+//           System.out.println( String.format("Genre: %s #:%d", tabRes[i][0], tabRes[i][1]) );
+//       }
+       
+       // Méthode 2
+       for(Object[] ligne : tabRes){
+           System.out.println( String.format("Genre: %s #:%d", ligne[0], ligne[1]) );
+       }
+    }
     
     @Test
     public void req7(){
