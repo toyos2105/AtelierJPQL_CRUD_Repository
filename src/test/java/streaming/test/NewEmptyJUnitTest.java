@@ -22,20 +22,57 @@ public class NewEmptyJUnitTest {
     EntityManager em = myPersistence.createEntityManager();
     
     @Test
-    public void Exercice() {
+    public void Exercice1() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT f FROM Film f WHERE f.id=4");
         Film film = (Film) query.getSingleResult();
-
-        Assert.assertEquals("Fargo", film.getTitre());
         
-        System.out.println(film.getTitre());
-        
-        //em.getTransaction().commit();
-        
-        
+        System.out.println("EX 1   Nom du film="+film.getTitre());
+      
     }
     
+    @Test
+    public void Exercice2() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) FROM Film f");
+        long nbFilm = (long) query.getSingleResult();
+        
+        System.out.println("EX 2   nbFilm = "+nbFilm);
+      
+    } 
     
+    @Test
+    public void Exercice3() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT MIN(f.annee) FROM Film f");
+        int anneeMin = (int) query.getSingleResult();
+        
+        System.out.println("EX 3   anneeMin = "+anneeMin);
+      
+    } 
+    
+    @Test
+    public void Exercice4() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(l) FROM Lien l JOIN l.film f WHERE f.titre='Big Lebowski (The)'");
+        long nbLien = (long) query.getSingleResult();
+        
+        System.out.println("EX 4   nbLien = "+nbLien);
+      
+    } 
+    
+    @Test
+    public void Exercice5() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.?????????????? r WHERE r.nom='Polanski'");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 5   nbFilms = "+nbFilms);
+      
+    }   
 }
