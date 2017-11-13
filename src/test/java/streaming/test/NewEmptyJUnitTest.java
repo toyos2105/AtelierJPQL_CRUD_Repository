@@ -69,10 +69,150 @@ public class NewEmptyJUnitTest {
     public void Exercice5() {
         em.getTransaction().begin();
         
-        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.?????????????? r WHERE r.nom='Polanski'");
+        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.realisateurs r WHERE r.nom='Polanski'");
         long nbFilms = (long) query.getSingleResult();
         
-        System.out.println("EX 5   nbFilms = "+nbFilms);
+        System.out.println("EX 5   nbFilms Polanski réalisateur = "+nbFilms);
       
     }   
+    
+    @Test
+    public void Exercice6() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.acteurs a WHERE a.nom='Polanski'");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 6   nbFilms Polanski acteur = "+nbFilms);
+    }
+    
+     @Test
+    public void Exercice7() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.acteurs a JOIN f.realisateurs r WHERE a.nom='Polanski' AND r.nom='Polanski'");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 7   nbFilms Polanski acteur réalisateur = "+nbFilms);
+    }
+    
+    @Test
+    public void Exercice8() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT f FROM Film f JOIN f.genre g JOIN f.pays p JOIN f.realisateurs r WHERE g.nom='Horreur' AND p.nom='UK' AND r.nom='Polanski'");
+        Film film = (Film) query.getSingleResult();
+        
+        System.out.println("EX 8   Le titre du film d horreur anglais réalisé par roman polanski = "+ film.getTitre());
+    }
+    
+    @Test
+    public void Exercice9() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.realisateurs r WHERE r.nom='Coen' AND r.prenom='Joel'");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 9   Le nombre de films réalisés par joel coen = "+nbFilms);
+      
+    }
+    
+    @Test
+    public void Exercice10() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.realisateurs r1, f.realisateurs r2 WHERE (r1.nom='Coen' AND r1.prenom='Joel') AND (r2.nom='Coen' AND r2.prenom='Ethan')");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 10   Le nombre de films réalisés par les 2 frères coen = "+nbFilms);
+      
+    }
+    
+    @Test
+    public void Exercice11() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.realisateurs r1, f.realisateurs r2, f.acteurs a1 WHERE (r1.nom='Coen' AND r1.prenom='Joel') AND (r2.nom='Coen' AND r2.prenom='Ethan') AND (a1.nom='Buscemi' AND a1.prenom='Steve')");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 11   Le nombre de films réalisés à la fois par les 2 frères Coen, et interprétés par Steve Buscemi= "+nbFilms);
+      
+    }
+    
+    @Test
+    public void Exercice12() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.realisateurs r1, f.realisateurs r2, f.acteurs a1, f.genre g1 WHERE (r1.nom='Coen' AND r1.prenom='Joel') AND (r2.nom='Coen' AND r2.prenom='Ethan') AND (a1.nom='Buscemi' AND a1.prenom='Steve') AND g1.nom='Policier'");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 12   Le nombre de films policiers réalisés à la fois par les 2 frères Coen, et interprétés par Steve Buscemi = "+nbFilms);
+      
+    }
+    
+    @Test
+    public void Exercice13() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(saison) FROM Saison saison JOIN saison.serie serie Where serie.titre ='Dexter'");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 13   Le nombre de saisons de la série Dexter = "+nbFilms);
+      
+    }
+    
+    @Test
+    public void Exercice14() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(e) FROM Episode e Where e.saison.serie.titre ='Dexter'");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 14   Le nombre total d'épisodes de la série Dexter = "+nbFilms);
+      
+    } 
+    
+    @Test
+    public void Exercice15() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(e) FROM Episode e Where (e.saison.serie.titre ='Dexter') AND (e.saison.numSaison=8)");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 15   Le nombre d'épisodes de la saison 8 de la série Dexter = "+nbFilms);
+      
+    }
+    
+    @Test
+    public void Exercice16() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(l) FROM Lien l JOIN l.film f, f.genre g, f.pays p Where (g.nom='Policier') AND (p.nom='USA')");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 16   Le nombre total de liens pour nos films policiers américains = "+nbFilms);
+      
+    }
+    
+    @Test
+    public void Exercice17() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(l) FROM Lien l JOIN l.film f, f.genre g, f.acteurs a Where (g.nom='Horreur') AND (a.nom='Polanski')");
+        long nbFilms = (long) query.getSingleResult();
+        
+        System.out.println("EX 17   Le nombre totals de liens pour nos films d'horreur interprétés par Polanski = "+nbFilms);
+      
+    }    
+    
+    @Test
+    public void Exercice18() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.genre g Where (g.nom='Horreur')");
+        Film film = (Film) query.getSingleResult();
+        
+        System.out.println("EX 18   Tous les films d'horreur, sauf ceux interprétés par Polanski = "+film.getTitre());
+      
+    }
 }
