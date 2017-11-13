@@ -5,6 +5,7 @@
  */
 package streaming.test;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -209,10 +210,98 @@ public class NewEmptyJUnitTest {
     public void Exercice18() {
         em.getTransaction().begin();
         
-        Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.genre g Where (g.nom='Horreur')");
-        Film film = (Film) query.getSingleResult();
+        Query query = em.createQuery("SELECT f FROM Film f JOIN f.genre g Where g.nom='Horreur' EXCEPT SELECT f FROM Film f JOIN f.acteurs a Where a.nom='Polanski' ");
+        long nbFilms = (long) query.getResultList().size();
         
-        System.out.println("EX 18   Tous les films d'horreur, sauf ceux interprétés par Polanski = "+film.getTitre());
+        System.out.println("EX 18   Tous les films d'horreur, sauf ceux interprétés par Polanski = "+nbFilms);
+      
+    }   
+    
+    @Test
+    public void Exercice19() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT f FROM Film f INTERSECT SELECT f FROM Film f JOIN f.acteurs a Where a.nom='Polanski' ");
+        long nbFilms = (long) query.getResultList().size();
+        
+        System.out.println("EX 19   Parmi tous les films, uniquement ceux interprétés par Polanski = "+nbFilms);
+      
+    }   
+    
+    @Test
+    public void Exercice20() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT f FROM Film f JOIN f.acteurs a Where a.nom='Polanski' UNION SELECT f FROM Film f JOIN f.genre g Where g.nom='Horreur'  ");
+        long nbFilms = (long) query.getResultList().size();
+        
+        System.out.println("EX 20   Tous les films interprétés par Polanski et aussi tous les films d'horreur = "+nbFilms);
+      
+    }   
+    
+    @Test
+    public void Exercice21() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f),g.nom FROM Film f JOIN f.genre g GROUP BY g.nom ");
+        List<Object[]> films = query.getResultList();
+        
+        System.out.println("EX 21   Le nombre de films réalisés pour chaque genre = ");
+        for (Object[] film : films) 
+            System.out.println(film[0]+" : "+film[1]);
       
     }
+    
+    @Test
+    public void Exercice22() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) AS nb,r.nom,r.prenom FROM Film f JOIN f.realisateurs r GROUP BY r ORDER BY nb ASC, r.nom ASC, r.prenom ASC ");
+        List<Object[]> films = query.getResultList();
+        
+        System.out.println("EX 22  Le nombre de films réalisés pour chaque réalisateur, triés par ordre croissant puis par ordre alphabétique = ");
+        for (Object[] film : films) 
+            System.out.println(film[0]+" : "+film[1]+" : "+film[2]);
+      
+    }
+    
+    @Test
+    public void Exercice23() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(f) AS nb,r.nom,r.prenom FROM Film f JOIN f.realisateurs r GROUP BY r  HAVING nb >=2");
+        List<Object[]> films = query.getResultList();
+        
+        System.out.println("EX 23   Le nombre de films réalisés pour chaque réalisateur, uniquement si >= 2 = ");
+        for (Object[] film : films) 
+            System.out.println(film[0]+" : "+film[1]+" : "+film[2]);
+    }
+    
+    @Test
+    public void Exercice24() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT serie.titre, count(serie) AS nb FROM Serie serie JOIN serie.saisons saison GROUP BY serie ORDER BY nb, serie.titre");
+        List<Object[]> films = query.getResultList();
+        
+        System.out.println("EX 24   Le nombre total de saisons pour chaque série, triés par ordre croissant de saisons, puis par ordre alphabétique = ");
+        for (Object[] film : films) 
+            System.out.println(film[0]+" : "+film[1]);
+      
+    }
+    
+    
+    @Test
+    public void Exercice25() {
+        em.getTransaction().begin();
+        
+        Query query = em.createQuery("SELECT count(epi) AS nb,se.titre FROM Serie se JOIN se.saisons sa JOIN sa.episodes epi GROUP BY se HAVING nb>5 ORDER BY nb ");
+        List<Object[]> films = query.getResultList();
+        
+        System.out.println("EX 25   Le nombre total d'épisodes pour chaque série, pour peu qu'il y ait plus de 5 épisodes au total. Le tout trié par nbre d'épisodes = ");
+        for (Object[] film : films) 
+            System.out.println(film[0]+" : "+film[1]);
+      
+    }
+    
 }

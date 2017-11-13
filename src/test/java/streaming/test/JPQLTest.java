@@ -22,7 +22,7 @@ import streaming.entity.Serie;
  */
 public class JPQLTest {
 
-    @Test
+    //@Test
     public void fonctionsAccesJPA() {
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
@@ -66,8 +66,7 @@ public class JPQLTest {
         Query query = em.createQuery(sql);
         List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
-
-            System.out.println(String.format("%s %d", ligne[1], ligne[0]));
+            System.out.println(String.format("25 %s %d", ligne[1], ligne[0]));
         }
     }
 
@@ -88,7 +87,7 @@ public class JPQLTest {
         List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
 
-//            System.out.println( String.format("%s %d", ligne[0], ligne[1]) );
+            System.out.println( String.format("24 %s %d", ligne[0], ligne[1]) );
         }
     }
 
@@ -110,7 +109,7 @@ public class JPQLTest {
         List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
 
-//            System.out.println( String.format("%s %s %d", ligne[1], ligne[2], ligne[0]) );
+            System.out.println( String.format("23 %s %s %d", ligne[1], ligne[2], ligne[0]) );
         }
     }
 
@@ -131,7 +130,7 @@ public class JPQLTest {
         List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
 
-//            System.out.println( String.format("%s %s %d", ligne[1], ligne[2], ligne[0]) );
+            System.out.println( String.format("22 %s %s %d", ligne[1], ligne[2], ligne[0]) );
         }
     }
 
@@ -151,7 +150,7 @@ public class JPQLTest {
         List<Object[]> resultats = query.getResultList();
         for (Object[] ligne : resultats) {
 
-//            System.out.println( ligne[1] + " " + ligne[0] );
+            System.out.println( ligne[1] + " " + ligne[0] );
         }
     }
 
