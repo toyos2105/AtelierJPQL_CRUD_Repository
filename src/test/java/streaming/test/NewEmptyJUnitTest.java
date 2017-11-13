@@ -282,7 +282,7 @@ public class NewEmptyJUnitTest {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT serie.titre, count(serie) AS nb FROM Serie serie JOIN serie.saisons saison GROUP BY serie ORDER BY nb, serie.titre");
-        List<Object[]> films = query.getResultList();
+        List<Object[]> films = query.getResultList(); 
         
         System.out.println("EX 24   Le nombre total de saisons pour chaque série, triés par ordre croissant de saisons, puis par ordre alphabétique = ");
         for (Object[] film : films) 
