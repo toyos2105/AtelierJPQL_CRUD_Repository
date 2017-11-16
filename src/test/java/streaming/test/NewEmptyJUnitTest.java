@@ -22,7 +22,7 @@ public class NewEmptyJUnitTest {
     EntityManager em = myPersistence.createEntityManager();
     
     @Test
-    public void Exercice1() {
+    public void Exercice01() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT f FROM Film f WHERE f.id=4");
@@ -33,7 +33,7 @@ public class NewEmptyJUnitTest {
     }
     
     @Test
-    public void Exercice2() {
+    public void Exercice02() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT count(f) FROM Film f");
@@ -44,7 +44,7 @@ public class NewEmptyJUnitTest {
     } 
     
     @Test
-    public void Exercice3() {
+    public void Exercice03() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT MIN(f.annee) FROM Film f");
@@ -55,7 +55,7 @@ public class NewEmptyJUnitTest {
     } 
     
     @Test
-    public void Exercice4() {
+    public void Exercice04() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT count(l) FROM Lien l JOIN l.film f WHERE f.titre='Big Lebowski (The)'");
@@ -66,7 +66,7 @@ public class NewEmptyJUnitTest {
     } 
     
     @Test
-    public void Exercice5() {
+    public void Exercice05() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.realisateurs r WHERE r.nom='Polanski'");
@@ -77,7 +77,7 @@ public class NewEmptyJUnitTest {
     }   
     
     @Test
-    public void Exercice6() {
+    public void Exercice06() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.acteurs a WHERE a.nom='Polanski'");
@@ -87,7 +87,7 @@ public class NewEmptyJUnitTest {
     }
     
      @Test
-    public void Exercice7() {
+    public void Exercice07() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.acteurs a JOIN f.realisateurs r WHERE a.nom='Polanski' AND r.nom='Polanski'");
@@ -97,7 +97,7 @@ public class NewEmptyJUnitTest {
     }
     
     @Test
-    public void Exercice8() {
+    public void Exercice08() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT f FROM Film f JOIN f.genre g JOIN f.pays p JOIN f.realisateurs r WHERE g.nom='Horreur' AND p.nom='UK' AND r.nom='Polanski'");
@@ -107,7 +107,7 @@ public class NewEmptyJUnitTest {
     }
     
     @Test
-    public void Exercice9() {
+    public void Exercice09() {
         em.getTransaction().begin();
         
         Query query = em.createQuery("SELECT count(f) FROM Film f JOIN f.realisateurs r WHERE r.nom='Coen' AND r.prenom='Joel'");
