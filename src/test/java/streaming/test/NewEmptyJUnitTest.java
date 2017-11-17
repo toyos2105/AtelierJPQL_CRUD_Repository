@@ -280,7 +280,7 @@ public class NewEmptyJUnitTest {
     public void Exercice24() {
         em.getTransaction().begin();
         
-        Query query = em.createQuery("SELECT serie.titre, count(serie) AS nb FROM Serie serie JOIN serie.saisons saison GROUP BY serie ORDER BY nb, serie.titre");
+        Query query = em.createQuery("SELECT serie.titre, count(saison) AS nb FROM Serie serie JOIN serie.saisons saison GROUP BY serie ORDER BY nb, serie.titre");
         List<Object[]> films = query.getResultList(); 
         
         System.out.println("EX 24   Le nombre total de saisons pour chaque série, triés par ordre croissant de saisons, puis par ordre alphabétique = ");
@@ -294,7 +294,7 @@ public class NewEmptyJUnitTest {
     public void Exercice25() {
         em.getTransaction().begin();
         
-        Query query = em.createQuery("SELECT count(epi) AS nb,se.titre FROM Serie se JOIN se.saisons sa JOIN sa.episodes epi GROUP BY se HAVING nb>5 ORDER BY nb ");
+        Query query = em.createQuery("SELECT count(epi) AS nb,se.titre FROM Serie se JOIN se.saisons sa JOIN sa.episodes epi GROUP BY se HAVING nb>=5 ORDER BY nb ");
         List<Object[]> films = query.getResultList();
         
         System.out.println("EX 25   Le nombre total d'épisodes pour chaque série, pour peu qu'il y ait plus de 5 épisodes au total. Le tout trié par nbre d'épisodes = ");
