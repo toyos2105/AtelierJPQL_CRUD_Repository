@@ -26,31 +26,31 @@ public class TestJournalisation {
     @Autowired
     private Service1 srv1;
     
-    @Autowired
-    private Service2 srv2;
-    
-    @Autowired
-    private Service3 srv3;
+//    @Autowired
+//    private Service2 srv2;
+//    
+//    @Autowired
+//    private Service3 srv3;
     
     @Test
     public void test(){
         
         srv1.ajouter();
         srv1.modifier();
-        srv1.supprimer();
-        srv1.lister();
-        srv1.rechercher(1);
+//        srv1.supprimer();
+//        srv1.lister();
+//        srv1.rechercher(1);
         
-        srv2.ajouter();;
-        srv2.modifier();
-        srv2.supprimer();
-        srv2.lister();
-        srv2.rechercher(1);
-        
-        srv3.ajouter();;
-        srv3.modifier();
-        srv3.supprimer();
-        srv3.lister();
-        srv3.rechercher(1);
+//        srv2.ajouter();
+//        srv2.modifier();
+//        srv2.supprimer();
+//        srv2.lister();
+//        srv2.rechercher(1);
+//        
+//        srv3.ajouter();
+//        srv3.modifier();
+//        srv3.supprimer();
+//        srv3.lister();
+//        srv3.rechercher(1);
     }
 }

@@ -18,7 +18,7 @@ import streaming.service.JournalService;
  * @author formation
  */
 @Component
-@Aspect
+//@Aspect
 public class JournalisationAspect {
     
     @Autowired

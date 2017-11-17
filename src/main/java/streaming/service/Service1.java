@@ -16,13 +16,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class Service1 {
+    @Autowired
+    private JournalService journalService;
     
     public void ajouter(){
-        
+        journalService.journaliser("Ajouter");
     }
     
     public void modifier(){
-        
+        journalService.journaliser("Modifier");
     }
     
     public void supprimer(){
