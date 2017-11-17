@@ -5,16 +5,11 @@
  */
 package streaming.component;
 
-import org.springframework.stereotype.Component;
-
 /**
  *
  * @author Formation
  */
-@Component
-public class Composant2 {
-    public void affiche()
-    {
-        System.err.println("Composant2");
-    }
+public interface Parent {
+    public void Transfert(int idCompte1, int idCompte2, int montant);
+    
 }
