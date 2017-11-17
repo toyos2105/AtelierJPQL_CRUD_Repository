@@ -10,10 +10,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import streaming.component.Composant1;
 import streaming.config.SpringConfig;
-import streaming.service.Service1;
-import streaming.service.Service2;
-import streaming.service.Service3;
 
 /**
  *
@@ -24,7 +22,9 @@ import streaming.service.Service3;
 public class TestJournalisation {
     
     @Autowired
-    private Service1 srv1;
+    private Composant1 c1;
+    @Autowired
+    private Composant1 c1b;
     
 //    @Autowired
 //    private Service2 srv2;
@@ -34,9 +34,12 @@ public class TestJournalisation {
     
     @Test
     public void test(){
+        System.out.println("C1 : "+c1);
+        System.out.println("C1b : "+c1b);
         
-        srv1.ajouter();
-        srv1.modifier();
+        c1.affiche();
+//        srv1.ajouter();
+//        srv1.modifier();
 //        srv1.supprimer();
 //        srv1.lister();
 //        srv1.rechercher(1);
