@@ -16,6 +16,21 @@ import streaming.entity.Film;
  */
 public interface FilmDAO extends CrudRepository<Film, Long>{
     
+    public Film findOneById(long i);
+    
+    @Query("SELECT MIN(f.annee) FROM Film f")
+    public long anneeMin();
+    
+    public long countByRealisateursNom(String nom);
+    public long countByActeursNom(String nom);
+    
+    public Film findOneByRealisateursNomAndActeursNom(String nom1, String nom2);
+    public long countByRealisateursNomAndRealisateursPrenom(String nom, String Prenom);
+    public long countByRealisateursNomAndRealisateursPrenomOrRealisateursPrenom(String nom, String Prenom1, String Prenom2);
+    
+    
+    public Film findOneByGenreNomAndPaysNomAndRealisateursNomAndRealisateursPrenom(String genre, String pays, String nomReal, String prenomReal);
+    
     @Query("   SELECT   r.nom, r.prenom, COUNT(f) AS total "
             + "FROM     Film f "
             + "         JOIN f.realisateurs r "
@@ -98,17 +113,17 @@ public interface FilmDAO extends CrudRepository<Film, Long>{
             + "         AND a.prenom=?6")
     public long req11(String nomReal1, String prenomReal1, String nomReal2, String prenomReal2, String nomActeur, String prenomAct);
     
-    @Query("SELECT COUNT(f) FROM Film f JOIN f.realisateurs r JOIN f.realisateurs r2 WHERE r.nom=?1 AND r.prenom=?2 AND r2.nom=?3 AND r2.prenom=?4")
-    public long compterFilmsRealisesPar2RealSimulatnement(String nom1, String prenom1, String nom2, String prenom2);
-    
-    public long countByRealisateursNomAndRealisateursPrenom(String nom, String prenom);
-    
-    public Film findOneByGenreNomAndPaysNomAndRealisateursNomAndRealisateursPrenom(String genre, String pays, String nomReal, String prenomReal);
-    
-    public long countByRealisateursNomAndActeursNom(String nomReal, String nomAct);
-    
-    @Query("SELECT COUNT(f) FROM Film f JOIN f.acteurs a WHERE a.nom=?1")
-    public long compteFilmsParNomActeur(String n);
-    
-    public long countByActeursNom(String n);
+//    @Query("SELECT COUNT(f) FROM Film f JOIN f.realisateurs r JOIN f.realisateurs r2 WHERE r.nom=?1 AND r.prenom=?2 AND r2.nom=?3 AND r2.prenom=?4")
+//    public long compterFilmsRealisesPar2RealSimulatnement(String nom1, String prenom1, String nom2, String prenom2);
+//    
+//    public long countByRealisateursNomAndRealisateursPrenom(String nom, String prenom);
+//    
+//    public Film findOneByGenreNomAndPaysNomAndRealisateursNomAndRealisateursPrenom(String genre, String pays, String nomReal, String prenomReal);
+//    
+//    public long countByRealisateursNomAndActeursNom(String nomReal, String nomAct);
+//    
+//    @Query("SELECT COUNT(f) FROM Film f JOIN f.acteurs a WHERE a.nom=?1")
+//    public long compteFilmsParNomActeur(String n);
+//    
+//    public long countByActeursNom(String n);
 }

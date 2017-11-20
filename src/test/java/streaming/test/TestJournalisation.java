@@ -12,6 +12,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import streaming.component.Parent;
 import streaming.config.SpringConfig;
+import streaming.dao.FilmDAO;
+import streaming.dao.LienDAO;
+import streaming.entity.Film;
 
 /**
  *
@@ -23,6 +26,13 @@ public class TestJournalisation {
     
     @Autowired
     public Parent p;
+    
+    @Autowired
+    public FilmDAO daofilm;
+    
+    @Autowired
+    public LienDAO daolien;
+
     
 //    @Autowired
 //    private Composant1 c1;
@@ -37,7 +47,33 @@ public class TestJournalisation {
     
     @Test
     public void test(){
-        System.out.println("p : "+p);
+        
+//        System.out.println("p : "+p);
+        long l;
+        Film f;
+        f=daofilm.findOneById(4);
+        System.out.println("findOneById : "+f.getTitre());
+        System.out.println("count() : "+daofilm.count());
+        System.out.println("anneeMin() : "+daofilm.anneeMin());
+        System.out.println("countByFilmTitre() : "+daolien.countByFilmTitre("Big Lebowski (The)"));
+        System.out.println("countByRealisateursNom() : "+daofilm.countByRealisateursNom("Polanski"));
+        System.out.println("countByActeursNom() : "+daofilm.countByActeursNom("Polanski"));
+        
+        f = daofilm.findOneByRealisateursNomAndActeursNom("Polanski","Polanski");
+        System.out.println("findOneByRealisateursNomAndActeursNom() : "+f.getTitre());
+        
+        f = daofilm.findOneByGenreNomAndPaysNomAndRealisateursNomAndRealisateursPrenom("Horreur","UK","Polanski","Roman");
+        System.out.println("findOneByGenreNomAndPaysNomAndRealisateursNomAndRealisateursPrenom() : "+f.getTitre());
+        
+        l = daofilm.countByRealisateursNomAndRealisateursPrenom("Coen","Joel");
+        System.out.println("countByRealisateursNomAndRealisateursPrenom() : "+l);
+   
+        l = daofilm.countByRealisateursNomAndRealisateursPrenomOrRealisateursPrenom("Coen","Joel","Ethan");
+        System.out.println("countByRealisateursNomAndRealisateursPrenomOrRealisateursPrenom() : "+l);
+        
+        
+        
+        
 //        System.out.println("C1 : "+c1);
 //        System.out.println("C1b : "+c1b);
 //        
