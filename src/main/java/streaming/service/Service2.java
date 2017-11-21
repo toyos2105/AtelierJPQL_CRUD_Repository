@@ -18,7 +18,8 @@ import org.springframework.stereotype.Service;
 public class Service2 {
  
     public void ajouter(){
-        
+     
+        System.out.println("***ajouter");
     }
     
     public void modifier(){
@@ -30,8 +31,9 @@ public class Service2 {
     }
     
     public List lister(){
-        
+        System.out.println("***lister");
         return new ArrayList();
+        
     }
     
     public Object rechercher(long id){

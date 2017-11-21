@@ -22,7 +22,7 @@ import streaming.entity.Serie;
  */
 public class JPQLTest {
 
-    //@Test
+    @Test
     public void fonctionsAccesJPA() {
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");

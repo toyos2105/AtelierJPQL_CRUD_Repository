@@ -18,17 +18,19 @@ import streaming.service.JournalService;
  * @author formation
  */
 @Component
-//@Aspect
+@Aspect
 public class JournalisationAspect {
     
     @Autowired
     private JournalService service;
     
-    @Before("execution(* streaming.service.*.ajouter(..)) "
-            + "or execution(* streaming.service.*.modifier(..)) "
-            + "or execution(* streaming.service.*.supprimer(..))")
+    @Before("execution( * streaming.service.*.ajouter(..) )")
+    // Avant l'exécution ce ce qui est entre parenthèses
+    // le 1er * dit que je traite tout ce qui est retourné.
+    // et on l'applique au reste de la parenthèse
+    // On réalise la fonction en dessous
     public void avant(JoinPoint jp){
         
-        service.journaliser( jp.toString() );
+        throw new RuntimeException("Operation interdite");
     }
 }

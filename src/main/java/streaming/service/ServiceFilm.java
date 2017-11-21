@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @author formation
  */
 @Service
-public class Service1 {
+public class ServiceFilm {
     @Autowired
     private JournalService journalService;
     

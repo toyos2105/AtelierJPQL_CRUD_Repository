@@ -10,6 +10,7 @@
     <class>streaming.entity.Personne</class>
     <class>streaming.entity.Saison</class>
     <class>streaming.entity.Serie</class>
+    <class>streaming.entity.Journal</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/AtelierJPA"/>
       <property name="javax.persistence.jdbc.user" value="app"/>
