@@ -26,8 +26,9 @@ public class JournalService {
         EntityManagerFactory myPersistence = Persistence.createEntityManagerFactory("PU");
         EntityManager em = myPersistence.createEntityManager();
         em.getTransaction().begin();
+        em.persist(journal);
         System.out.println( String.format("[%s] %s", new Date(), msg) );
-         em.getTransaction().commit();
+        em.getTransaction().commit();
         
     }
 }

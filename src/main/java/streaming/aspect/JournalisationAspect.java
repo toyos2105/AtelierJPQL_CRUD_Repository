@@ -24,7 +24,7 @@ public class JournalisationAspect {
     @Autowired
     private JournalService service;
     
-    @Before("execution( * streaming.service.Service2.ajouter(..) ) or execution( * streaming.service.Service2.ajouter(..) )")
+    @Before("(execution( * streaming.service.Service2.ajouter(..) ) ) or ( execution( * streaming.service.Service2.ajouter(..) ) )")
     // Avant l'exécution ce ce qui est entre parenthèses
     // le 1er * dit que je traite tout ce qui est retourné.
     // et on l'applique au reste de la parenthèse

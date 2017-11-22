@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import streaming.config.SpringConfig;
-import streaming.service.Service2;
+import streaming.service.ServiceFilm;
 
 /**
  *
@@ -23,7 +23,7 @@ import streaming.service.Service2;
 public class TestService {
     
     @Autowired
-    public Service2 service;
+    public ServiceFilm service;
 
     @Test
     public void TestAjoutService() {

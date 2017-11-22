@@ -242,7 +242,7 @@ public class NewEmptyJUnitTest {
     public void Exercice21() {
         em.getTransaction().begin();
         
-        Query query = em.createQuery("SELECT count(f),g.nom FROM Film f JOIN f.genre g GROUP BY g.nom ");
+        Query query = em.createQuery("SELECT count(f),g.nom FROM Film f JOIN f.genre g GROUP BY g ");
         List<Object[]> films = query.getResultList();
         
         System.out.println("EX 21   Le nombre de films réalisés pour chaque genre = ");
